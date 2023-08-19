@@ -152,14 +152,14 @@ namespace CommonDialogs.Maui
             MimeType ??= "*/*";
             switch (ActionId)
             {
-                case 1:
+                case PickFileId:
                     intent = new Intent(Intent.ActionOpenDocument);
                     DisplayTitle ??= "Select the file";
                     SetMimeType(intent);
                     intent.PutExtra(Intent.ExtraTitle, DisplayTitle);
                     StartActivityForResult(intent, PickFileId);
                     break;
-                case 2:
+                case PickFilesId:
                     intent = new Intent(Intent.ActionOpenDocument);
                     SetMimeType(intent);
                     DisplayTitle ??= "Select multiple files";
@@ -167,7 +167,7 @@ namespace CommonDialogs.Maui
                     intent.PutExtra(Intent.ExtraAllowMultiple, true);
                     StartActivityForResult(intent, PickFilesId);
                     break;
-                case 3:
+                case PickFolderId:
                     intent = new Intent(Intent.ActionOpenDocumentTree);
                     DisplayTitle ??= "Select a folder";
                     intent.PutExtra(Intent.ExtraTitle, DisplayTitle);

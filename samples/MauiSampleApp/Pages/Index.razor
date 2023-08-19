@@ -4,27 +4,58 @@
 
 <h1>Common dialogs sample application</h1>
 <hr/>
-<h2>Files</h2>
+<h2>Single file</h2>
 <button @onclick="OnSelectFile">Select file...</button>
-<button>Select files...</button>
-@if (filePickResult != null)
+@if (_filePickResult != null)
 {
     <table>
-        <tr><td>Name:</td><td>@filePickResult?.FileName</td></tr>
-        <tr><td>Full path:</td><td>@filePickResult?.FullPath</td></tr>
-        <tr><td>Platform Path:</td><td>@filePickResult?.PlatformPath</td></tr>
+        <tr><td>Name:</td><td>@_filePickResult?.FileName</td></tr>
+        <tr><td>Full path:</td><td>@_filePickResult?.FullPath</td></tr>
+        <tr><td>Platform Path:</td><td>@_filePickResult?.PlatformPath</td></tr>
     </table>
 }
 <hr />
-<h2>Directories</h2>
-<button>Select folder...</button>
+<h2>Files</h2>
+<button @onclick="OnSelectFiles">Select files...</button>
+@if (_filesPickResult != null)
+{
+    <table>
+    @foreach (var file in _filesPickResult)
+    {
+            <tr><td>Name:</td><td>@file.FileName</td><td>@_filePickResult?.FullPath</td></tr>
 
+    }
+    </table>
+}
+<hr />
+<h2>Directory</h2>
+<button @onclick="OnSelectFolder">Select folder...</button>
+@if (_folderPickResult != null)
+{
+    <table>
+        <tr><td>Name:</td><td>@_folderPickResult?.FileName</td></tr>
+        <tr><td>Full path:</td><td>@_folderPickResult?.FullPath</td></tr>
+        <tr><td>Platform Path:</td><td>@_folderPickResult?.PlatformPath</td></tr>
+    </table>
+}
 @code {
-    FilePickResult? filePickResult;
+    FilePickResult? _filePickResult;
+    FilePickResult? _folderPickResult;
+    private IEnumerable<FilePickResult>? _filesPickResult;
 
     private async Task OnSelectFile()
     {
-        filePickResult = await CommonDialogs.PickFileAsync(FilePickOptions.All, "Select a file");
+        _filePickResult = await CommonDialogs.PickFileAsync(FilePickOptions.All);
+    }
+
+    private async Task OnSelectFolder()
+    {
+        _folderPickResult = await CommonDialogs.PickFolderAsync(new FilePickOptions() { PickerTitle = "Select Test Folder" });
+    }
+
+    private async Task OnSelectFiles()
+    {
+        _filesPickResult = await CommonDialogs.PickFilesAsync(FilePickOptions.All);
     }
 
 }

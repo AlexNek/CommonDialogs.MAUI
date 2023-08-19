@@ -65,8 +65,20 @@ sw.Write("Some text");
 ```
 In repository you can find sample project too
 
-## Android troubleshooting
-If you have problem for writing to SD card try this solution:
+## Troubleshooting
+### Android: write to external storage
+If you have problem for writing to SD card for android try this solution:
 Open system settings and go to Apps. Find application named Files (on some devices the app may have name Documents or other name). You may need to enable to show system apps from menu. You may also filter to show only disabled apps, then you may find it easier. Then enable the app, force-close X-plore and retry.
 
 This is reported to fix the problem, if Documents (Files) app exists on device. If the app is not included, there may be no fix.
+
+### Dialog title
+Dialog Title is not changeable/visible. Behavior is different per platform.
+- iOS & Windows don't seem to use the title at all
+- macOS does
+- On Android I think it might show when you get the popup to pick an app to pick your actual file. So then it will only show when you have multiple apps installed that can pick a file. If there is only 1 app installed then it will skip that dialog and you'll never see the title. This is due to the nature of Android where you can have a multitude of apps to complete your actions.
+
+[Maui issue](https://github.com/dotnet/maui/issues/8173)
+
+## Usefull links
+Icons inspiration by [Icons8](https://icons8.com)
