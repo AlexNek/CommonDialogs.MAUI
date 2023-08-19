@@ -27,7 +27,7 @@ for android api bigger as 29 you need to add
 1. Select a video file and read it:
 ```csharp
 FilePickResult res = await CommonDialogs.PickFileAsync(FilePickOptions.Videos);
-using var stream = CommonDialogs.OpenPickedFile(res.PlatformPath, "r");
+using var stream = CommonDialogs.OpenFile(res.PlatformPath, "r");
 ...
 ```
 
@@ -51,7 +51,7 @@ FilePickResult res = await CommonDialogs.PickFileAsync(fileOptions);
 ```csharp
 var folder = await CommonDialogs.PickFolderAsync(null);
 var res = CommonDialogs.CreateFile(folder.PlatformPath, "test.txt");
-using var stream = CommonDialogs.OpenPickedFile(res.PlatformPath, "w");
+using var stream = CommonDialogs.OpenFile(res.PlatformPath, "w");
 using var sw = new StreamWriter(stream );
 sw.Write("Some text");
 ```
@@ -59,7 +59,7 @@ sw.Write("Some text");
 ```csharp
 var res3 = CommonDialogs.CreateFolder(folder.PlatformPath, "testFolder");
 var res4 = CommonDialogs.CreateFile(res3.PlatformPath, "TestInnerFolder/test.txt");
-using var stream = CommonDialogs.OpenPickedFile(res4.PlatformPath, "w");
+using var stream = CommonDialogs.OpenFile(res4.PlatformPath, "w");
 using var sw = new StreamWriter(stream);
 sw.Write("Some text");
 ```
@@ -67,7 +67,7 @@ In repository you can find sample project too
 
 ## Troubleshooting
 ### Android: write to external storage
-If you have problem for writing to SD card for android try this solution:
+If you have problem for writing to SD card for android with platform path too, try this solution:
 Open system settings and go to Apps. Find application named Files (on some devices the app may have name Documents or other name). You may need to enable to show system apps from menu. You may also filter to show only disabled apps, then you may find it easier. Then enable the app, force-close X-plore and retry.
 
 This is reported to fix the problem, if Documents (Files) app exists on device. If the app is not included, there may be no fix.

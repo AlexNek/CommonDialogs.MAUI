@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="platformPath">the path from picked result</param>
         /// <returns></returns>
-        public static Stream? OpenPickedFile(string platformPath, string fileOpenMode) => Default.OpenPickedFile(platformPath, fileOpenMode);
+        public static Stream? OpenFile(string platformPath, string fileOpenMode) => Default.OpenPickedFile(platformPath, fileOpenMode);
 
         /// <summary>
         /// pick single file
