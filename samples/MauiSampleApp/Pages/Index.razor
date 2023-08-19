@@ -1,0 +1,30 @@
+﻿@page "/"
+@using CommonDialogs.Maui
+
+
+<h1>Common dialogs sample application</h1>
+<hr/>
+<h2>Files</h2>
+<button @onclick="OnSelectFile">Select file...</button>
+<button>Select files...</button>
+@if (filePickResult != null)
+{
+    <table>
+        <tr><td>Name:</td><td>@filePickResult?.FileName</td></tr>
+        <tr><td>Full path:</td><td>@filePickResult?.FullPath</td></tr>
+        <tr><td>Platform Path:</td><td>@filePickResult?.PlatformPath</td></tr>
+    </table>
+}
+<hr />
+<h2>Directories</h2>
+<button>Select folder...</button>
+
+@code {
+    FilePickResult? filePickResult;
+
+    private async Task OnSelectFile()
+    {
+        filePickResult = await CommonDialogs.PickFileAsync(FilePickOptions.All, "Select a file");
+    }
+
+}
