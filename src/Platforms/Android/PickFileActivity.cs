@@ -19,11 +19,11 @@ namespace CommonDialogs.Maui
 
         public const int PickFolderId = 3;
 
-        private static TaskCompletionSource<IEnumerable<FilePickResult>>? _PickFilesTaskCompletionSource;
+        private static TaskCompletionSource<IEnumerable<FileSystemPickResult>>? _PickFilesTaskCompletionSource;
 
-        private static TaskCompletionSource<FilePickResult?>? _PickFileTaskCompletionSource;
+        private static TaskCompletionSource<FileSystemPickResult?>? _PickFileTaskCompletionSource;
 
-        private static TaskCompletionSource<FilePickResult?>? _PickFolderTaskCompletionSource;
+        private static TaskCompletionSource<FileSystemPickResult?>? _PickFolderTaskCompletionSource;
 
         public static string? GetAbsoluteFolderPath(Android.Net.Uri uri)
         {
@@ -87,7 +87,7 @@ namespace CommonDialogs.Maui
                 {
                     if (resultCode == Result.Ok && data?.ClipData != null)
                     {
-                        var results = new List<FilePickResult>();
+                        var results = new List<FileSystemPickResult>();
                         for (int i = 0; i < data.ClipData.ItemCount; i++)
                         {
                             var uri = data.ClipData.GetItemAt(i);
@@ -116,7 +116,7 @@ namespace CommonDialogs.Maui
                 {
                 }
 
-                PickFilesTaskCompletionSource?.TrySetResult(new List<FilePickResult>());
+                PickFilesTaskCompletionSource?.TrySetResult(new List<FileSystemPickResult>());
             }
             else if (requestCode == PickFolderId)
             {
@@ -133,7 +133,7 @@ namespace CommonDialogs.Maui
 
                         var folderName = uri.Path?.Split(":").Last();
                         PickFolderTaskCompletionSource?.TrySetResult(
-                            new FilePickResult(folderName, GetAbsoluteFolderPath(uri), uri.ToString()));
+                            new FileSystemPickResult(folderName, GetAbsoluteFolderPath(uri), uri.ToString()));
                     }
                 }
                 else
@@ -178,10 +178,10 @@ namespace CommonDialogs.Maui
             SetContentView(new Android.Widget.LinearLayout(this));
         }
 
-        private FilePickResult ReadFile(Android.Net.Uri uri)
+        private FileSystemPickResult ReadFile(Android.Net.Uri uri)
         {
             var documentFile = DocumentFile.FromSingleUri(this, uri);
-            return new FilePickResult(documentFile?.Name, GetAbsoluteFolderPath(uri), uri.ToString());
+            return new FileSystemPickResult(documentFile?.Name, GetAbsoluteFolderPath(uri), uri.ToString());
         }
 
         private static void SetMimeType(Intent intent)
@@ -213,7 +213,7 @@ namespace CommonDialogs.Maui
 
         public static string? MimeType { get; set; }
 
-        public static TaskCompletionSource<IEnumerable<FilePickResult>>? PickFilesTaskCompletionSource
+        public static TaskCompletionSource<IEnumerable<FileSystemPickResult>>? PickFilesTaskCompletionSource
         {
             get
             {
@@ -226,7 +226,7 @@ namespace CommonDialogs.Maui
             }
         }
 
-        public static TaskCompletionSource<FilePickResult?>? PickFileTaskCompletionSource
+        public static TaskCompletionSource<FileSystemPickResult?>? PickFileTaskCompletionSource
         {
             get => _PickFileTaskCompletionSource;
             set
@@ -236,7 +236,7 @@ namespace CommonDialogs.Maui
             }
         }
 
-        public static TaskCompletionSource<FilePickResult?>? PickFolderTaskCompletionSource
+        public static TaskCompletionSource<FileSystemPickResult?>? PickFolderTaskCompletionSource
         {
             get => _PickFolderTaskCompletionSource;
             set

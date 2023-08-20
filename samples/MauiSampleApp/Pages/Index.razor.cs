@@ -4,11 +4,11 @@ namespace MauiSampleApp.Pages
 {
     public partial class Index
     {
-        private FilePickResult? _filePickResult;
+        private FileSystemPickResult? _filePickResult;
 
-        private IEnumerable<FilePickResult>? _filesPickResult;
+        private IEnumerable<FileSystemPickResult>? _filesPickResult;
 
-        private FilePickResult? _folderPickResult;
+        private FileSystemPickResult? _folderPickResult;
 
         private async Task OnSelectFile()
         {

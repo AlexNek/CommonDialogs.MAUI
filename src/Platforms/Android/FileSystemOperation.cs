@@ -8,7 +8,7 @@ namespace CommonDialogs.Maui
 {
     internal partial class FileSystemOperations
     {
-        internal FilePickResult? CreateFilePlatform(string platformFolderPath, string childPath)
+        internal FileSystemPickResult? CreateFilePlatform(string platformFolderPath, string childPath)
         {
             var paths = childPath.Split(new[] { '/', Path.PathSeparator }, StringSplitOptions.RemoveEmptyEntries);
             var folderUri = Android.Net.Uri.Parse(platformFolderPath);
@@ -33,7 +33,7 @@ namespace CommonDialogs.Maui
             return null;
         }
 
-        internal FilePickResult? CreateFolderPlatform(string platformFolderPath, string childPath)
+        internal FileSystemPickResult? CreateFolderPlatform(string platformFolderPath, string childPath)
         {
             var paths = childPath.Split(new[] { '/', Path.PathSeparator }, StringSplitOptions.RemoveEmptyEntries);
             var folderUri = Android.Net.Uri.Parse(platformFolderPath);
@@ -125,9 +125,9 @@ namespace CommonDialogs.Maui
             return null;
         }
 
-        internal Task<FilePickResult?> PickFilePlatformAsync(FilePickOptions? pickOptions)
+        internal Task<FileSystemPickResult?> PickFilePlatformAsync(FilePickOptions? pickOptions)
         {
-            PickFileActivity.PickFileTaskCompletionSource = new TaskCompletionSource<FilePickResult?>();
+            PickFileActivity.PickFileTaskCompletionSource = new TaskCompletionSource<FileSystemPickResult?>();
             PickFileActivity.HoldPermisson = pickOptions?.HoldPermission ?? true;
             PickFileActivity.DisplayTitle = pickOptions?.PickerTitle;
             if (pickOptions != null)
@@ -156,9 +156,9 @@ namespace CommonDialogs.Maui
             return PickFileActivity.PickFileTaskCompletionSource.Task;
         }
 
-        internal Task<IEnumerable<FilePickResult>> PickFilesPlatformAsync(FilePickOptions? pickOptions)
+        internal Task<IEnumerable<FileSystemPickResult>> PickFilesPlatformAsync(FilePickOptions? pickOptions)
         {
-            PickFileActivity.PickFilesTaskCompletionSource = new TaskCompletionSource<IEnumerable<FilePickResult>>();
+            PickFileActivity.PickFilesTaskCompletionSource = new TaskCompletionSource<IEnumerable<FileSystemPickResult>>();
             PickFileActivity.HoldPermisson = pickOptions?.HoldPermission ?? true;
             PickFileActivity.DisplayTitle = pickOptions?.PickerTitle;
             if (pickOptions != null)
@@ -177,9 +177,9 @@ namespace CommonDialogs.Maui
             return PickFileActivity.PickFilesTaskCompletionSource.Task;
         }
 
-        internal Task<FilePickResult?> PickFolderPlatformAsync(FilePickOptions? pickOptions)
+        internal Task<FileSystemPickResult?> PickFolderPlatformAsync(FilePickOptions? pickOptions)
         {
-            PickFileActivity.PickFolderTaskCompletionSource = new TaskCompletionSource<FilePickResult?>();
+            PickFileActivity.PickFolderTaskCompletionSource = new TaskCompletionSource<FileSystemPickResult?>();
             PickFileActivity.HoldPermisson = pickOptions?.HoldPermission ?? true;
             PickFileActivity.DisplayTitle = pickOptions?.PickerTitle ?? "选择文件夹";
             var intent = new Intent(Context, typeof(PickFileActivity));
@@ -188,7 +188,7 @@ namespace CommonDialogs.Maui
             return PickFileActivity.PickFolderTaskCompletionSource.Task;
         }
 
-        private FilePickResult? CreateFileInDocument(string fileName, DocumentFile? file)
+        private FileSystemPickResult? CreateFileInDocument(string fileName, DocumentFile? file)
         {
             var target = file?.FindFile(fileName);
             if (target == null || target.IsDirectory)
@@ -203,7 +203,7 @@ namespace CommonDialogs.Maui
             if (file != null)
             {
                 //Context?.ContentResolver?.TakePersistableUriPermission(file.Uri, ActivityFlags.GrantReadUriPermission | ActivityFlags.GrantWriteUriPermission );
-                return new FilePickResult(
+                return new FileSystemPickResult(
                     file.Name,
                     PickFileActivity.GetAbsoluteFolderPath(file.Uri),
                     file.Uri.ToString());
@@ -212,7 +212,7 @@ namespace CommonDialogs.Maui
             return null;
         }
 
-        private FilePickResult? CreateFolderInDocument(string folderName, DocumentFile? file)
+        private FileSystemPickResult? CreateFolderInDocument(string folderName, DocumentFile? file)
         {
             var target = file?.FindFile(folderName);
             if (target == null || target.IsFile)
@@ -226,7 +226,7 @@ namespace CommonDialogs.Maui
 
             if (file != null)
             {
-                return new FilePickResult(
+                return new FileSystemPickResult(
                     file.Name,
                     PickFileActivity.GetAbsoluteFolderPath(file.Uri),
                     file.Uri.ToString());

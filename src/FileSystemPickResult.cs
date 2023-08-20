@@ -3,22 +3,22 @@
     /// <summary>
     /// Represents the result of a file pick operation.
     /// </summary>
-    public class FilePickResult
+    public class FileSystemPickResult
     {
         /// <summary>
         /// Initializes a new instance of the FilePickResult class.
         /// </summary>
-        /// <param name="fileName">The name of the file.</param>
+        /// <param name="name">The name of the file.</param>
         /// <param name="fullPath">The full path of the file.</param>
         /// <param name="platformPath">The platform-specific path of the file.</param>
-        public FilePickResult(string? fileName, string? fullPath, string? platformPath)
+        public FileSystemPickResult(string? name, string? fullPath, string? platformPath)
         {
-            FileName = fileName;
+            Name = name;
             FullPath = fullPath;
             PlatformPath = platformPath;
         }
 
-        public string? FileName { get; }
+        public string? Name { get; }
 
         public string? FullPath { get; }
 

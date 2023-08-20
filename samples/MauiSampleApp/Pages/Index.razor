@@ -9,7 +9,7 @@
 @if (_filePickResult != null)
 {
     <table>
-        <tr><td>Name:</td><td>@_filePickResult?.FileName</td></tr>
+        <tr><td>Name:</td><td>@_filePickResult?.Name</td></tr>
         <tr><td>Full path:</td><td>@_filePickResult?.FullPath</td></tr>
         <tr><td>Platform Path:</td><td>@_filePickResult?.PlatformPath</td></tr>
     </table>
@@ -22,7 +22,7 @@
     <table>
     @foreach (var file in _filesPickResult)
     {
-            <tr><td>Name:</td><td>@file.FileName</td><td>@_filePickResult?.FullPath</td></tr>
+            <tr><td>Name:</td><td>@file.Name</td><td>@_filePickResult?.FullPath</td></tr>
     }
     </table>
 }
@@ -32,7 +32,7 @@
 @if (_folderPickResult != null)
 {
     <table>
-        <tr><td>Name:</td><td>@_folderPickResult?.FileName</td></tr>
+        <tr><td>Name:</td><td>@_folderPickResult?.Name</td></tr>
         <tr><td>Full path:</td><td>@_folderPickResult?.FullPath</td></tr>
         <tr><td>Platform Path:</td><td>@_folderPickResult?.PlatformPath</td></tr>
     </table>

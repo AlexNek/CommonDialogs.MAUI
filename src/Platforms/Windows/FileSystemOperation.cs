@@ -6,7 +6,7 @@ namespace CommonDialogs.Maui
 {
     internal partial class FileSystemOperations
     {
-        internal FilePickResult? CreateFilePlatform(string platformFolderPath, string childPath)
+        internal FileSystemPickResult? CreateFilePlatform(string platformFolderPath, string childPath)
         {
             try
             {
@@ -25,7 +25,7 @@ namespace CommonDialogs.Maui
                     }
                 }
 
-                return new FilePickResult(Path.GetFileName(path), path, path);
+                return new FileSystemPickResult(Path.GetFileName(path), path, path);
             }
             catch (Exception ex)
             {
@@ -35,7 +35,7 @@ namespace CommonDialogs.Maui
             return null;
         }
 
-        internal FilePickResult? CreateFolderPlatform(string platformFolderPath, string childPath)
+        internal FileSystemPickResult? CreateFolderPlatform(string platformFolderPath, string childPath)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace CommonDialogs.Maui
                     _ = Directory.CreateDirectory(path);
                 }
 
-                return new FilePickResult(Path.GetFileName(path.TrimEnd('/')) ?? childPath, path, path);
+                return new FileSystemPickResult(Path.GetFileName(path.TrimEnd('/')) ?? childPath, path, path);
             }
             catch
             {
@@ -69,21 +69,21 @@ namespace CommonDialogs.Maui
             return File.Open(platformPath, FileMode.OpenOrCreate);
         }
 
-        internal async Task<FilePickResult?> PickFilePlatformAsync(FilePickOptions? pickOptions)
+        internal async Task<FileSystemPickResult?> PickFilePlatformAsync(FilePickOptions? pickOptions)
         {
             var res = await Microsoft.Maui.Storage.FilePicker.PickAsync(pickOptions);
-            return res is null ? null : new FilePickResult(res.FileName, res.FullPath, res.FullPath);
+            return res is null ? null : new FileSystemPickResult(res.FileName, res.FullPath, res.FullPath);
         }
 
-        internal async Task<IEnumerable<FilePickResult>> PickFilesPlatformAsync(FilePickOptions? pickOptions)
+        internal async Task<IEnumerable<FileSystemPickResult>> PickFilesPlatformAsync(FilePickOptions? pickOptions)
         {
             var results = await Microsoft.Maui.Storage.FilePicker.PickMultipleAsync(pickOptions);
             return results is null
-                       ? Array.Empty<FilePickResult>()
-                       : results.Select(res => new FilePickResult(res.FileName, res.FullPath, res.FullPath));
+                       ? Array.Empty<FileSystemPickResult>()
+                       : results.Select(res => new FileSystemPickResult(res.FileName, res.FullPath, res.FullPath));
         }
 
-        internal async Task<FilePickResult?> PickFolderPlatformAsync(FilePickOptions? pickOptions)
+        internal async Task<FileSystemPickResult?> PickFolderPlatformAsync(FilePickOptions? pickOptions)
         {
             var folderPicker = new FolderPicker();
             folderPicker.FileTypeFilter.Add("*");
@@ -99,7 +99,7 @@ namespace CommonDialogs.Maui
                     return null;
                 }
 
-                return new FilePickResult(folder.Name, folder.Path, folder.Path);
+                return new FileSystemPickResult(folder.Name, folder.Path, folder.Path);
             }
 
             return null;

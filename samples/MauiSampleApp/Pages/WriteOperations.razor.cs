@@ -18,9 +18,9 @@ namespace MauiSampleApp.Pages
 
         private string? _fileContent2;
 
-        private FilePickResult? _folderCreateTest;
+        private FileSystemPickResult? _folderCreateTest;
 
-        private FilePickResult? _folderPickResult;
+        private FileSystemPickResult? _folderPickResult;
 
         private string? _resultText1;
 

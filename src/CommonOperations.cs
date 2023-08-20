@@ -13,7 +13,7 @@
         /// <param name="platformFolderPath">the path from picked result or created from CreateFolder</param>
         /// <param name="childPath">"folder/file.txt or file.txt. "/"is Path.PathSeparator,In Android is ":" "</param>
         /// <returns></returns>
-        public static FilePickResult? CreateFile(string platformFolderPath, string childPath) => Default.CreateFile(platformFolderPath, childPath);
+        public static FileSystemPickResult? CreateFile(string platformFolderPath, string childPath) => Default.CreateFile(platformFolderPath, childPath);
 
         /// <summary>
         /// create folder
@@ -21,7 +21,7 @@
         /// <param name="platformFolderPath">the path from picked result or created from CreateFolder</param>
         /// <param name="childPath">"folder/innerFodler or folder. "/"is Path.PathSeparator,In Android is ":" "</param>
         /// <returns></returns>
-        public static FilePickResult? CreateFolder(string platformFolderPath, string childPath) =>
+        public static FileSystemPickResult? CreateFolder(string platformFolderPath, string childPath) =>
             Default.CreateFolder(platformFolderPath, childPath);
 
         /// <summary>
@@ -36,21 +36,21 @@
         /// </summary>
         /// <param name="pickOptions">can be null</param>
         /// <returns></returns>
-        public static Task<FilePickResult?> PickFileAsync(FilePickOptions? pickOptions) => Default.PickFileAsync(pickOptions);
+        public static Task<FileSystemPickResult?> PickFileAsync(FilePickOptions? pickOptions) => Default.PickFileAsync(pickOptions);
 
         /// <summary>
         /// pick mutilple files
         /// </summary>
         /// <param name="pickOptions">can be null</param>
         /// <returns></returns>
-        public static Task<IEnumerable<FilePickResult>> PickFilesAsync(FilePickOptions? pickOptions) => Default.PickFilesAsync(pickOptions);
+        public static Task<IEnumerable<FileSystemPickResult>> PickFilesAsync(FilePickOptions? pickOptions) => Default.PickFilesAsync(pickOptions);
 
         /// <summary>
         /// pick a folder to create file in it
         /// </summary>
         /// <param name="pickOptions">set display title</param>
         /// <returns></returns>
-        public static Task<FilePickResult?> PickFolderAsync(FilePickOptions? pickOptions) => Default.PickFolderAsync(pickOptions);
+        public static Task<FileSystemPickResult?> PickFolderAsync(FilePickOptions? pickOptions) => Default.PickFolderAsync(pickOptions);
 
         public static IFileSystemOperations Default
         {

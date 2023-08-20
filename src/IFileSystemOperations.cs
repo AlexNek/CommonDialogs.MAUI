@@ -11,7 +11,7 @@
         /// <param name="platformFolderPath">the path from picked result or created from CreateFolder</param>
         /// <param name="childPath">"etc,folder/file.txt or file.txt"</param>
         /// <returns></returns>
-        FilePickResult? CreateFile(string platformFolderPath, string childPath);
+        FileSystemPickResult? CreateFile(string platformFolderPath, string childPath);
 
         /// <summary>
         /// Create folder
@@ -19,7 +19,7 @@
         /// <param name="platformFolderPath">the path from picked result or created from CreateFolder</param>
         /// <param name="childPath">"etc,folder/file.txt or file.txt"</param>
         /// <returns></returns>
-        FilePickResult? CreateFolder(string platformFolderPath, string childPath);
+        FileSystemPickResult? CreateFolder(string platformFolderPath, string childPath);
 
         /// <summary>
         /// Open picked file
@@ -34,20 +34,20 @@
         /// </summary>
         /// <param name="pickOptions">can be null</param>
         /// <returns></returns>
-        Task<FilePickResult?> PickFileAsync(FilePickOptions? pickOptions);
+        Task<FileSystemPickResult?> PickFileAsync(FilePickOptions? pickOptions);
 
         /// <summary>
         /// Pck multiple files
         /// </summary>
         /// <param name="pickOptions">can be null</param>
         /// <returns></returns>
-        Task<IEnumerable<FilePickResult>> PickFilesAsync(FilePickOptions? pickOptions);
+        Task<IEnumerable<FileSystemPickResult>> PickFilesAsync(FilePickOptions? pickOptions);
 
         /// <summary>
         /// Pick a folder
         /// </summary>
         /// <param name="pickOptions">set display title</param>
         /// <returns></returns>
-        Task<FilePickResult?> PickFolderAsync(FilePickOptions? pickOptions);
+        Task<FileSystemPickResult?> PickFolderAsync(FilePickOptions? pickOptions);
     }
 }
