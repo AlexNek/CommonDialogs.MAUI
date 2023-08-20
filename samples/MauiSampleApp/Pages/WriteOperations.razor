@@ -7,6 +7,7 @@
 <h1>Common dialogs sample application - write operations</h1>
 <div class="alert-danger">@_errorText1</div>
 <div class="alert-danger">@_errorText2</div>
+<div class="alert-danger">@_errorText3</div>
 <button @onclick="OnSelectFolder">Select main folder...</button>
 @if (_folderPickResult != null)
 {
@@ -21,6 +22,20 @@
 <button @onclick="OnCreateFile">Create test file</button>
 <div>@_resultText1</div>
 <div>File content:@_fileContent1</div>
+
+<hr />
+<h2>Create folder</h2>
+<button @onclick="OnCreateFolder">Create folder</button>
+<div>@_resultText3</div>
+@if (_folderCreateTest != null)
+{
+    <table>
+        <tr><td>Name:</td><td>@_folderCreateTest?.FileName</td></tr>
+        <tr><td>Full path:</td><td>@_folderCreateTest?.FullPath</td></tr>
+        <tr><td>Platform Path:</td><td>@_folderCreateTest?.PlatformPath</td></tr>
+    </table>
+}
+
 <hr />
 <h2>Create file and folders</h2>
 <button @onclick="OnCreateFileAndFolders">Create file and folders</button>

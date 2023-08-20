@@ -37,24 +37,4 @@
         <tr><td>Platform Path:</td><td>@_folderPickResult?.PlatformPath</td></tr>
     </table>
 }
-@code {
-    FilePickResult? _filePickResult;
-    FilePickResult? _folderPickResult;
-    private IEnumerable<FilePickResult>? _filesPickResult;
 
-    private async Task OnSelectFile()
-    {
-        _filePickResult = await CommonOperations.PickFileAsync(FilePickOptions.All);
-    }
-
-    private async Task OnSelectFolder()
-    {
-        _folderPickResult = await CommonOperations.PickFolderAsync(new FilePickOptions() { PickerTitle = "Select Test Folder" });
-    }
-
-    private async Task OnSelectFiles()
-    {
-        _filesPickResult = await CommonOperations.PickFilesAsync(FilePickOptions.All);
-    }
-
-}
