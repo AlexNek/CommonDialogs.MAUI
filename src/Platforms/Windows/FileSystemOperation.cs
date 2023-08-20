@@ -56,12 +56,12 @@ namespace CommonDialogs.Maui
 
         internal Stream? OpenPickedFilePlatform(string platformPath, string fileOpenMode)
         {
-            if (fileOpenMode == "r")
+            if (fileOpenMode == FileOperations.Read)
             {
                 return File.OpenRead(platformPath);
             }
 
-            if (fileOpenMode == "w")
+            if (fileOpenMode == FileOperations.Write)
             {
                 return File.OpenWrite(platformPath);
             }

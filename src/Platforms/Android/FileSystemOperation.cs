@@ -63,17 +63,17 @@ namespace CommonDialogs.Maui
         {
             if (platformPath.StartsWith("content"))
             {
-                if (fileOpenMode == "r")
+                if (fileOpenMode == FileOperations.Read)
                 {
                     return Context.ContentResolver?.OpenInputStream(Android.Net.Uri.Parse(platformPath)!);
                 }
 
-                if (fileOpenMode == "w")
+                if (fileOpenMode == FileOperations.Write)
                 {
                     return Context.ContentResolver?.OpenOutputStream(Android.Net.Uri.Parse(platformPath)!, "w");
                 }
 
-                if (fileOpenMode == "rw")
+                if (fileOpenMode == FileOperations.ReadWrite)
                 {
                     var descriptor = Context.ContentResolver?.OpenFileDescriptor(Android.Net.Uri.Parse(platformPath)!, "rw");
                     return new JavaStreamWrapper(descriptor!);
@@ -87,12 +87,12 @@ namespace CommonDialogs.Maui
 
             try
             {
-                if (fileOpenMode == "r")
+                if (fileOpenMode == FileOperations.Read)
                 {
                     return File.OpenRead(platformPath);
                 }
 
-                if (fileOpenMode == "w")
+                if (fileOpenMode == FileOperations.Write)
                 {
                     return File.OpenWrite(platformPath);
                 }

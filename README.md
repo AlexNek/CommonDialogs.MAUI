@@ -31,7 +31,7 @@ If you want to use DI add `services.AddFileSystemOperations();` and use somethin
 1. Select a video file and read it:
 ```csharp
 FilePickResult res = await CommonOperations.PickFileAsync(FilePickOptions.Videos);
-using var stream = CommonOperations.OpenFile(res.PlatformPath, "r");
+using var stream = CommonOperations.OpenFile(res.PlatformPath, FileOperations.Read);
 ...
 ```
 
@@ -55,7 +55,7 @@ FilePickResult res = await CommonOperations.PickFileAsync(fileOptions);
 ```csharp
 var folder = await CommonOperations.PickFolderAsync(null);
 var res = CommonOperations.CreateFile(folder.PlatformPath, "test.txt");
-using var stream = CommonOperations.OpenFile(res.PlatformPath, "w");
+using var stream = CommonOperations.OpenFile(res.PlatformPath, FileOperations.Write);
 using var sw = new StreamWriter(stream );
 sw.Write("Some text");
 ```
@@ -63,7 +63,7 @@ sw.Write("Some text");
 ```csharp
 var res3 = CommonOperations.CreateFolder(folder.PlatformPath, "testFolder");
 var res4 = CommonOperations.CreateFile(res3.PlatformPath, "TestInnerFolder/test.txt");
-using var stream = CommonOperations.OpenFile(res4.PlatformPath, "w");
+using var stream = CommonOperations.OpenFile(res4.PlatformPath, FileOperations.Write);
 using var sw = new StreamWriter(stream);
 sw.Write("Some text");
 ```

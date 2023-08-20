@@ -49,14 +49,14 @@ namespace MauiSampleApp.Pages
                 if (_folderPickResult != null)
                 {
                     var res = CommonOperations.CreateFile(_folderPickResult.PlatformPath, TestFileName);
-                    using (var stream = CommonOperations.OpenFile(res.PlatformPath, "w"))
+                    using (var stream = CommonOperations.OpenFile(res.PlatformPath, FileOperations.Write))
                     {
                         using var sw = new StreamWriter(stream);
                         sw.Write("Some text");
                         _resultText1 = "File created";
                     }
 
-                    using (var streamRead = CommonOperations.OpenFile(res.PlatformPath, "r"))
+                    using (var streamRead = CommonOperations.OpenFile(res.PlatformPath, FileOperations.Read))
                     {
                         using var textReader = new StreamReader(streamRead);
                         _fileContent1 = textReader.ReadToEnd();
@@ -84,7 +84,7 @@ namespace MauiSampleApp.Pages
                 {
                     string newPath = Path.Combine("SubfolerTest01", "SubfolderTest02", TestFileName);
                     var res = CommonOperations.CreateFile(_folderPickResult.PlatformPath, newPath);
-                    using (var stream = CommonOperations.OpenFile(res.PlatformPath, "w"))
+                    using (var stream = CommonOperations.OpenFile(res.PlatformPath, FileOperations.Write))
                     {
                         using (var sw = new StreamWriter(stream))
                         {
@@ -93,7 +93,7 @@ namespace MauiSampleApp.Pages
                         }
                     }
 
-                    using var streamRead = CommonOperations.OpenFile(res.PlatformPath, "r");
+                    using var streamRead = CommonOperations.OpenFile(res.PlatformPath, FileOperations.Read);
 
                     using var textReader = new StreamReader(streamRead);
                     _fileContent2 = textReader.ReadToEnd();
