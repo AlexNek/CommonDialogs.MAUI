@@ -30,6 +30,8 @@ only support android,windows.</Description>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageIcon>appicon.png</PackageIcon>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\keypair.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	<!-- Android -->
 	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) != true">
