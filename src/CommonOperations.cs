@@ -3,9 +3,9 @@
     /// <summary>
     /// Provides a set of commonly used dialog methods.
     /// </summary>
-    public static class CommonDialogs
+    public static class CommonOperations
     {
-        private static FilePicker? filePicker;
+        private static FileSystemOperations? filePicker;
 
         /// <summary>
         /// create file
@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="platformPath">the path from picked result</param>
         /// <returns></returns>
-        public static Stream? OpenFile(string platformPath, string fileOpenMode) => Default.OpenPickedFile(platformPath, fileOpenMode);
+        public static Stream? OpenFile(string platformPath, string fileOpenMode) => Default.OpenFile(platformPath, fileOpenMode);
 
         /// <summary>
         /// pick single file
@@ -52,13 +52,13 @@
         /// <returns></returns>
         public static Task<FilePickResult?> PickFolderAsync(FilePickOptions? pickOptions) => Default.PickFolderAsync(pickOptions);
 
-        public static IFilePicker Default
+        public static IFileSystemOperations Default
         {
             get
             {
                 if (filePicker == null)
                 {
-                    filePicker = new FilePicker();
+                    filePicker = new FileSystemOperations();
                 }
 
                 return filePicker;

@@ -31,15 +31,15 @@ namespace MauiSampleApp.Pages
                 _resultText1 = String.Empty;
                 if (_folderPickResult != null)
                 {
-                    var res = CommonDialogs.Maui.CommonDialogs.CreateFile(_folderPickResult.PlatformPath, TestFileName);
-                    using (var stream = CommonDialogs.Maui.CommonDialogs.OpenFile(res.PlatformPath, "w"))
+                    var res = CommonDialogs.Maui.CommonOperations.CreateFile(_folderPickResult.PlatformPath, TestFileName);
+                    using (var stream = CommonDialogs.Maui.CommonOperations.OpenFile(res.PlatformPath, "w"))
                     {
                         using var sw = new StreamWriter(stream);
                         sw.Write("Some text");
                         _resultText1 = "File created";
                     }
 
-                    using (var streamRead = CommonDialogs.Maui.CommonDialogs.OpenFile(res.PlatformPath, "r"))
+                    using (var streamRead = CommonDialogs.Maui.CommonOperations.OpenFile(res.PlatformPath, "r"))
                     {
                         using var textReader = new StreamReader(streamRead);
                         _fileContent1 = textReader.ReadToEnd();
@@ -64,8 +64,8 @@ namespace MauiSampleApp.Pages
                 if (_folderPickResult != null)
                 {
                     string newPath = Path.Combine("SubfolerTest01", "subfolderTest02", TestFileName);
-                    var res = CommonDialogs.Maui.CommonDialogs.CreateFile(_folderPickResult.PlatformPath, newPath);
-                    using (var stream = CommonDialogs.Maui.CommonDialogs.OpenFile(res.PlatformPath, "w"))
+                    var res = CommonDialogs.Maui.CommonOperations.CreateFile(_folderPickResult.PlatformPath, newPath);
+                    using (var stream = CommonDialogs.Maui.CommonOperations.OpenFile(res.PlatformPath, "w"))
                     {
                         using (var sw = new StreamWriter(stream))
                         {
@@ -74,7 +74,7 @@ namespace MauiSampleApp.Pages
                         }
                     }
 
-                    using var streamRead = CommonDialogs.Maui.CommonDialogs.OpenFile(res.PlatformPath, "r");
+                    using var streamRead = CommonDialogs.Maui.CommonOperations.OpenFile(res.PlatformPath, "r");
 
                     using var textReader = new StreamReader(streamRead);
                     _fileContent2 = textReader.ReadToEnd();
@@ -90,7 +90,7 @@ namespace MauiSampleApp.Pages
 
         private async Task OnSelectFolder()
         {
-            var folderPickResult = await CommonDialogs.Maui.CommonDialogs.PickFolderAsync(new FilePickOptions { PickerTitle = "Select Test Folder" });
+            var folderPickResult = await CommonDialogs.Maui.CommonOperations.PickFolderAsync(new FilePickOptions { PickerTitle = "Select Test Folder" });
             if (folderPickResult != null)
             {
                 _folderPickResult = folderPickResult;

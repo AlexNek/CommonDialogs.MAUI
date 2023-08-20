@@ -44,17 +44,17 @@
 
     private async Task OnSelectFile()
     {
-        _filePickResult = await CommonDialogs.PickFileAsync(FilePickOptions.All);
+        _filePickResult = await CommonOperations.PickFileAsync(FilePickOptions.All);
     }
 
     private async Task OnSelectFolder()
     {
-        _folderPickResult = await CommonDialogs.PickFolderAsync(new FilePickOptions() { PickerTitle = "Select Test Folder" });
+        _folderPickResult = await CommonOperations.PickFolderAsync(new FilePickOptions() { PickerTitle = "Select Test Folder" });
     }
 
     private async Task OnSelectFiles()
     {
-        _filesPickResult = await CommonDialogs.PickFilesAsync(FilePickOptions.All);
+        _filesPickResult = await CommonOperations.PickFilesAsync(FilePickOptions.All);
     }
 
 }

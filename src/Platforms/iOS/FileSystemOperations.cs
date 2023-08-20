@@ -1,6 +1,6 @@
 ﻿namespace CommonDialogs.Maui
 {
-    public partial class FilePicker
+    internal partial class FileSystemOperations
     {
         internal FilePickResult? CreateFilePlatform(string platformFolderPath, string childPath)
         {

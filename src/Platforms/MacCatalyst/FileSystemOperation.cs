@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CommonDialogs.Maui
+﻿namespace CommonDialogs.Maui
 {
-    public partial class FilePicker
+    internal partial class FileSystemOperations
     {
+        internal FilePickResult? CreateFilePlatform(string platformFolderPath, string childPath)
+        {
+            throw new NotSupportedException();
+        }
+
+        internal FilePickResult? CreateFolderPlatform(string platformFolderPath, string childPath)
+        {
+            throw new NotSupportedException();
+        }
+
         internal Stream? OpenPickedFilePlatform(string platformPath, string fileOpenMode)
         {
             throw new NotImplementedException();
@@ -26,15 +30,6 @@ namespace CommonDialogs.Maui
         internal Task<FilePickResult?> PickFolderPlatformAsync(FilePickOptions? pickOptions)
         {
             throw new NotImplementedException();
-        }
-        internal FilePickResult? CreateFilePlatform(string platformFolderPath, string childPath)
-        {
-            throw new NotSupportedException();
-        }
-
-        internal FilePickResult? CreateFolderPlatform(string platformFolderPath, string childPath)
-        {
-            throw new NotSupportedException();
         }
     }
 }

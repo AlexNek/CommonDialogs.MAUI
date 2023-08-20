@@ -2,10 +2,10 @@
 {
     /// <summary>
     /// Class FilePicker. Represents a file picker object for selecting files.
-    /// Implements the <see cref="CommonDialogs.Maui.IFilePicker" />
+    /// Implements the <see cref="CommonOperations.Maui.IFilePicker" />
     /// </summary>
-    /// <seealso cref="CommonDialogs.Maui.IFilePicker" />
-    public partial class FilePicker : IFilePicker
+    /// <seealso cref="CommonOperations.Maui.IFilePicker" />
+    internal partial class FileSystemOperations : IFileSystemOperations
     {
         /// <summary>
         /// create file
@@ -35,7 +35,7 @@
         /// <param name="platformPath">the path from picked result</param>
         /// <param name="fileOpenMode">"r","w","rw"</param>
         /// <returns>System.Nullable&lt;Stream&gt;.</returns>
-        public Stream? OpenPickedFile(string platformPath, string fileOpenMode)
+        public Stream? OpenFile(string platformPath, string fileOpenMode)
         {
             return OpenPickedFilePlatform(platformPath, fileOpenMode);
         }
