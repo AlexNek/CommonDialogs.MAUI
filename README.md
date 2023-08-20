@@ -13,7 +13,7 @@ I can only found [library](https://github.com/mingkly/MKFilePicker) which suppor
 - Select folder
 
 ## Android permissions
-Don't forget to change android manifest nd set permissions
+Don't forget to change android manifest and set permissions
 - READ_EXTERNAL_STORAGE
 - WRITE_EXTERNAL_STORAGE
 
@@ -24,16 +24,20 @@ for android api bigger as 29 you need to add
 
 ## Samples
 
+It is possible to call supported opearations over static call or over dependecy injection (DI).
+If you want to use DI add `services.AddFileSystemOperations();` and use something like this
+`@inject IFileSystemOperations CommonOperations`
+
 1. Select a video file and read it:
 ```csharp
-FilePickResult res = await CommonDialogs.PickFileAsync(FilePickOptions.Videos);
-using var stream = CommonDialogs.OpenFile(res.PlatformPath, "r");
+FilePickResult res = await CommonOperations.PickFileAsync(FilePickOptions.Videos);
+using var stream = CommonOperations.OpenFile(res.PlatformPath, "r");
 ...
 ```
 
 2. Select many video files:
 ```csharp
-var results = await CommonDialogs.PickFilesAsync(FilePickOptions.Videos);
+var results = await CommonOperations.PickFilesAsync(FilePickOptions.Videos);
 ```
 3. Select special types of file:
 ```csharp
@@ -45,21 +49,21 @@ var fileOptions = new FilePickOptions()
           {DevicePlatform.WinUI,   new string[]{"*.png", "*.jpg", "*.jpeg", "*.webp","*.gif","*.bmp"} }
     }),
 };
-FilePickResult res = await CommonDialogs.PickFileAsync(fileOptions);
+FilePickResult res = await CommonOperations.PickFileAsync(fileOptions);
 ```
 4. Select a folder and create file under it:
 ```csharp
-var folder = await CommonDialogs.PickFolderAsync(null);
-var res = CommonDialogs.CreateFile(folder.PlatformPath, "test.txt");
-using var stream = CommonDialogs.OpenFile(res.PlatformPath, "w");
+var folder = await CommonOperations.PickFolderAsync(null);
+var res = CommonOperations.CreateFile(folder.PlatformPath, "test.txt");
+using var stream = CommonOperations.OpenFile(res.PlatformPath, "w");
 using var sw = new StreamWriter(stream );
 sw.Write("Some text");
 ```
 5. Select a folder and create subfolder with file:
 ```csharp
-var res3 = CommonDialogs.CreateFolder(folder.PlatformPath, "testFolder");
-var res4 = CommonDialogs.CreateFile(res3.PlatformPath, "TestInnerFolder/test.txt");
-using var stream = CommonDialogs.OpenFile(res4.PlatformPath, "w");
+var res3 = CommonOperations.CreateFolder(folder.PlatformPath, "testFolder");
+var res4 = CommonOperations.CreateFile(res3.PlatformPath, "TestInnerFolder/test.txt");
+using var stream = CommonOperations.OpenFile(res4.PlatformPath, "w");
 using var sw = new StreamWriter(stream);
 sw.Write("Some text");
 ```
